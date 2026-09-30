@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Đại Việt - Cuộn Chiếu Khảo Hạch</title>
+
+<style>
+
+/* =========================================================
+   1. CÀI ĐẶT CHUNG
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body  {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color: #3a2114;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,238,184,.35),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #6f381e,
+            #b1793c,
+            #6b321b
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   2. TRỐNG ĐỒNG ĐÔNG SƠN LÀM NỀN
+========================================================= */
+
+.dong-son-background {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 0;
+
+    opacity: .16;
+}
+
+.dong-son-drum {
+    width: min(900px, 95vw);
+    height: min(900px, 95vw);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 0 8%,
+            #d5a34d 8.3% 9%,
+            transparent 9.3% 17%,
+            #c28c38 17.3% 18%,
+            transparent 18.3% 27%,
+            #b77c2c 27.3% 28%,
+            transparent 28.3% 39%,
+            #d2a044 39.3% 40%,
+            transparent 40.3% 100%
+        );
+
+    border:
+        16px solid #9a6427;
+
+    box-shadow:
+        0 0 0 25px rgba(108,55,25,.35),
+        inset 0 0 80px rgba(60,25,10,.7);
+
+    position: relative;
+
+    animation:
+        drumRotate 80s linear infinite;
+}
+
+.dong-son-drum::before {
+    content: "✦";
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 90px;
+
+    color: #d9aa4c;
+
+    text-shadow:
+        0 0 10px #6c3c1c;
+}
+
+.dong-son-drum::after {
+    content:
+        "✦ 𐩐 ✦ 𐩐 ✦ 𐩐 ✦ 𐩐 ✦ 𐩐 ✦ 𐩐 ✦ 𐩐";
+
+    position: absolute;
+
+    inset: 15%;
+
+    border:
+        4px dashed rgba(218,169,76,.8);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #d5a34d;
+
+    font-size: 25px;
+
+    word-spacing: 20px;
+}
+
+@keyframes drumRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   3. KHUNG CHÍNH
+========================================================= */
+
+.page {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1100px, calc(100% - 30px));
+
+    margin: 35px auto;
+
+    background:
+        linear-gradient(
+            rgba(247,231,191,.97),
+            rgba(224,199,145,.97)
+        );
+
+    border:
+        12px solid #6b321a;
+
+    outline:
+        3px solid #c49443;
+
+    box-shadow:
+        0 0 0 8px #8b5428,
+        0 25px 60px rgba(35,15,5,.6);
+
+    min-height: 750px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   4. HOA VĂN RỒNG THỜI LÝ
+========================================================= */
+
+.dragon-border {
+    height: 70px;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #6f351c,
+            #8b481f,
+            #5c2915
+        );
+
+    color: #d8a64c;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    font-size: 28px;
+
+    letter-spacing: 14px;
+
+    border-bottom:
+        4px solid #c49443;
+}
+
+.dragon-border::before,
+.dragon-border::after {
+
+    content:
+        "🐉 〰 𓆙 〰 🐉 〰 𓆙 〰 🐉";
+
+    position: absolute;
+
+    white-space: nowrap;
+
+    opacity: .8;
+
+    font-size: 25px;
+}
+
+.dragon-border::before {
+    left: -10px;
+}
+
+.dragon-border::after {
+    right: -10px;
+    transform: scaleX(-1);
+}
+
+
+/* =========================================================
+   5. NỘI DUNG
+========================================================= */
+
+.content {
+
+    padding:
+        25px 55px 45px;
+
+}
+
+
+/* =========================================================
+   6. HEADER
+========================================================= */
+
+.header {
+
+    text-align: center;
+
+    padding:
+        20px 10px 25px;
+
+    border-bottom:
+        3px double #8c551e;
+
+}
+
+.header-small {
+
+    font-size: 14px;
+
+    letter-spacing: 6px;
+
+    color: #7b4a20;
+
+    margin-bottom: 10px;
+
+}
+
+.header h1 {
+
+    margin: 0;
+
+    color: #861d1d;
+
+    font-size:
+        clamp(28px, 5vw, 46px);
+
+    text-transform: uppercase;
+
+    text-shadow:
+        2px 2px 0 #d2a94e;
+
+}
+
+.header-title {
+
+    font-size:
+        clamp(14px, 2vw, 19px);
+
+    color: #6e411d;
+
+    margin-top: 10px;
+
+    font-style: italic;
+
+}
+
+.sun-symbol {
+
+    font-size: 28px;
+
+    color: #b17b25;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================================================
+   7. THÔNG TIN GAME
+========================================================= */
+
+.game-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin:
+        25px 0 12px;
+
+}
+
+.info-box {
+
+    flex: 1;
+
+    padding:
+        10px 15px;
+
+    background:
+        rgba(255,246,214,.75);
+
+    border:
+        2px solid #986b2f;
+
+    color: #70401f;
+
+    font-weight: bold;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   8. THANH THỜI GIAN
+========================================================= */
+
+.timer-area {
+
+    margin-bottom: 25px;
+
+}
+
+.timer-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 6px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #70401f;
+
+}
+
+.timer {
+
+    font-size: 20px;
+
+    color: #8b1e1e;
+
+}
+
+.timer.warning {
+
+    animation:
+        timerWarning .6s infinite alternate;
+
+}
+
+@keyframes timerWarning {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+
+}
+
+.timer-bar {
+
+    height: 12px;
+
+    border:
+        2px solid #75421e;
+
+    background: #c8aa70;
+
+    overflow: hidden;
+
+}
+
+.timer-progress {
+
+    height: 100%;
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a11f1f,
+            #d39d3b
+        );
+
+    transform-origin: left;
+
+    transition:
+        width 1s linear;
+
+}
+
+
+/* =========================================================
+   9. CUỘN CHIẾU
+========================================================= */
+
+.scroll-container {
+
+    position: relative;
+
+    margin:
+        20px 0 30px;
+
+}
+
+
+/* Hai đầu cuộn */
+
+.scroll-rod {
+
+    position: absolute;
+
+    z-index: 3;
+
+    left: -15px;
+
+    right: -15px;
+
+    height: 32px;
+
+    background:
+        linear-gradient(
+            #c38b3c,
+            #80501e,
+            #d3a04c
+        );
+
+    border:
+        3px solid #633316;
+
+    box-shadow:
+        0 5px 10px rgba(50,20,5,.3);
+
+}
+
+.scroll-rod.top {
+
+    top: -15px;
+
+}
+
+.scroll-rod.bottom {
+
+    bottom: -15px;
+
+}
+
+
+/* Phần giấy */
+
+.scroll-paper {
+
+    position: relative;
+
+    padding:
+        42px 35px;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,.4),
+            transparent 70%
+        ),
+
+        #ead6a6;
+
+    border-left:
+        12px solid #bc8740;
+
+    border-right:
+        12px solid #bc8740;
+
+    box-shadow:
+        inset 0 0 40px rgba(86,45,15,.15);
+
+    transform-origin: top center;
+
+    animation:
+        scrollOpen .9s cubic-bezier(.2,.8,.2,1);
+
+}
+
+@keyframes scrollOpen {
+
+    0% {
+
+        transform:
+            scaleY(0);
+
+        opacity: 0;
+
+    }
+
+    60% {
+
+        transform:
+            scaleY(1.04);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            scaleY(1);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* Viền cổ */
+
+.scroll-paper::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border:
+        2px solid rgba(130,76,27,.3);
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   10. CÂU HỎI
+========================================================= */
+
+.question-label {
+
+    text-align: center;
+
+    color: #8b1e1e;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+
+}
+
+.question {
+
+    margin: 0;
+
+    text-align: center;
+
+    font-size:
+        clamp(19px, 3vw, 27px);
+
+    line-height: 1.6;
+
+    color: #3d2415;
+
+}
+
+
+/* =========================================================
+   11. ĐÁP ÁN
+========================================================= */
+
+.answers {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+
+    animation:
+        answersAppear .7s ease;
+
+}
+
+@keyframes answersAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+.answer {
+
+    min-height: 82px;
+
+    display: flex;
+
+    align-items: center;
+
+    text-align: left;
+
+    gap: 10px;
+
+    padding: 16px 18px;
+
+    border:
+        3px solid #805323;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4e4bd,
+            #e5cc96
+        );
+
+    color: #3a2114;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 5px 0 #70401f;
+
+    transition:
+        all .18s ease;
+
+}
+
+.answer:hover {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        #efd39a;
+
+    box-shadow:
+        5px 8px 0 #70401f;
+
+}
+
+.answer:active {
+
+    transform:
+        translateY(2px);
+
+    box-shadow:
+        1px 2px 0 #70401f;
+
+}
+
+.answer-letter {
+
+    flex-shrink: 0;
+
+    width: 37px;
+
+    height: 37px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #8b1e1e;
+
+    color: #f8e8bc;
+
+    border:
+        2px solid #5e2416;
+
+}
+
+.answer.correct {
+
+    background:
+        linear-gradient(
+            135deg,
+            #567a3f,
+            #3f612d
+        );
+
+    color: white;
+
+    border-color:
+        #2f4a23;
+
+    animation:
+        correctPulse .5s ease;
+
+}
+
+.answer.wrong {
+
+    background:
+        linear-gradient(
+            135deg,
+            #aa3838,
+            #801f1f
+        );
+
+    color: white;
+
+    border-color:
+        #5c1616;
+
+    animation:
+        wrongShake .4s ease;
+
+}
+
+@keyframes correctPulse {
+
+    0% {
+        transform: scale(.97);
+    }
+
+    60% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+@keyframes wrongShake {
+
+    0%,100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-7px);
+    }
+
+    75% {
+        transform: translateX(7px);
+    }
+
+}
+
+.answer.disabled {
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   12. THÔNG BÁO ĐÚNG SAI
+========================================================= */
+
+.result {
+
+    display: none;
+
+    margin:
+        25px auto 0;
+
+    max-width: 800px;
+
+    padding:
+        15px 20px;
+
+    text-align: center;
+
+    border:
+        2px solid #986b2f;
+
+    background:
+        rgba(255,248,225,.9);
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+.result.show {
+
+    display: block;
+
+}
+
+.result.correct-result {
+
+    color: #3d632c;
+
+}
+
+.result.wrong-result {
+
+    color: #8b1e1e;
+
+}
+
+
+/* =========================================================
+   13. NÚT TIẾP
+========================================================= */
+
+.next-btn {
+
+    display: none;
+
+    margin:
+        22px auto 0;
+
+    padding:
+        14px 38px;
+
+    background:
+        #861d1d;
+
+    color:
+        #f7e9c5;
+
+    border:
+        3px solid #5d2417;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 5px 0 #4c291b;
+
+    transition:
+        all .2s ease;
+
+}
+
+.next-btn:hover {
+
+    background:
+        #a92c2c;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   14. MÀN HÌNH KẾT QUẢ
+========================================================= */
+
+.final-screen {
+
+    display: none;
+
+    text-align: center;
+
+    padding:
+        60px 25px 70px;
+
+}
+
+.final-symbol {
+
+    font-size: 70px;
+
+    color:
+        #a36c22;
+
+}
+
+.final-screen h2 {
+
+    font-size:
+        clamp(28px, 5vw, 42px);
+
+    color:
+        #8b1e1e;
+
+}
+
+.final-score {
+
+    display:
+        inline-block;
+
+    margin:
+        25px 0;
+
+    padding:
+        20px 50px;
+
+    border:
+        5px double #8b1e1e;
+
+    background:
+        rgba(255,248,225,.8);
+
+    color:
+        #8b1e1e;
+
+    font-size:
+        clamp(28px, 5vw, 40px);
+
+    font-weight:
+        bold;
+
+}
+
+.final-message {
+
+    font-size: 19px;
+
+    color: #70401f;
+
+}
+
+.restart-btn {
+
+    padding:
+        15px 38px;
+
+    background:
+        #861d1d;
+
+    color:
+        #f7e9c5;
+
+    border:
+        3px solid #5d2417;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 5px 0 #4c291b;
+
+}
+
+
+/* =========================================================
+   15. HIỆU ỨNG CHUYỂN CÂU
+========================================================= */
+
+.fade-out {
+
+    animation:
+        questionOut .35s ease forwards;
+
+}
+
+@keyframes questionOut {
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            translateX(-35px);
+
+    }
+
+}
+
+
+/* =========================================================
+   16. MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding: 0;
+
+    }
+
+    .page {
+
+        width: 100%;
+
+        margin: 0;
+
+        border-width: 6px;
+
+        outline: none;
+
+        box-shadow:
+            0 10px 30px rgba(35,15,5,.5);
+
+    }
+
+    .content {
+
+        padding:
+            15px 15px 35px;
+
+    }
+
+    .dragon-border {
+
+        height: 50px;
+
+        font-size: 20px;
+
+    }
+
+    .game-info {
+
+        flex-direction: column;
+
+        gap: 8px;
+
+    }
+
+    .scroll-paper {
+
+        padding:
+            38px 20px;
+
+    }
+
+    .answers {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 13px;
+
+    }
+
+    .answer {
+
+        min-height: 72px;
+
+        font-size: 16px;
+
+    }
+
+    .question {
+
+        font-size: 19px;
+
+    }
+
+    .dong-son-drum {
+
+        width: 650px;
+
+        height: 650px;
+
+    }
+
+}
+
+
+/* =========================================================
+   17. MÀN HÌNH RẤT NHỎ
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .header h1 {
+
+        font-size: 25px;
+
+    }
+
+    .header-small {
+
+        letter-spacing: 3px;
+
+    }
+
+    .scroll-paper {
+
+        padding:
+            35px 15px;
+
+    }
+
+    .answer {
+
+        padding:
+            13px;
+
+    }
+
+    .answer-letter {
+
+        width: 32px;
+
+        height: 32px;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TRỐNG ĐỒNG ĐÔNG SƠN
+====================================================== -->
+
+<div class="dong-son-background">
+
+    <div class="dong-son-drum"></div>
+
+</div>
+
+
+<!-- =====================================================
+     KHUNG CHÍNH
+====================================================== -->
+
+<div class="page">
+
+
+    <!-- HOA VĂN RỒNG -->
+
+    <div class="dragon-border">
+        🐉 〰 𓆙 〰 🐉 〰 𓆙 〰 🐉
+    </div>
+
+
+    <div class="content">
+
+
+        <!-- =================================================
+             GAME SCREEN
+        ================================================== -->
+
+        <div id="gameScreen">
+
+
+            <!-- HEADER -->
+
+            <div class="header">
+
+                <div class="header-small">
+                    ĐẠI VIỆT • TRI THỨC • CÔNG NGHỆ
+                </div>
+
+                <h1>
+                    THỬ THÁCH CHUYỂN ĐỔI SỐ
+                </h1>
+
+                <div class="header-title">
+                    Cuộn Chiếu Khảo Hạch • Phần III & IV
+                </div>
+
+                <div class="sun-symbol">
+                    ☼
+                </div>
+
+            </div>
+
+
+            <!-- THÔNG TIN -->
+
+            <div class="game-info">
+
+                <div
+                    class="info-box"
+                    id="questionNumber">
+
+                    Câu 1 / 24
+
+                </div>
+
+                <div
+                    class="info-box"
+                    id="scoreText">
+
+                    Điểm: 0
+
+                </div>
+
+            </div>
+
+
+            <!-- ĐỒNG HỒ -->
+
+            <div class="timer-area">
+
+                <div class="timer-top">
+
+                    <span>
+                        ⏳ Thời gian còn lại
+                    </span>
+
+                    <span
+                        class="timer"
+                        id="timer">
+
+                        20 giây
+
+                    </span>
+
+                </div>
+
+
+                <div class="timer-bar">
+
+                    <div
+                        class="timer-progress"
+                        id="timerProgress">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CUỘN CHIẾU -->
+
+            <div
+                class="scroll-container"
+                id="scrollContainer">
+
+                <div class="scroll-rod top"></div>
+
+                <div class="scroll-paper">
+
+                    <div class="question-label">
+                        ❖ CHIẾU HỎI ❖
+                    </div>
+
+                    <h2
+                        class="question"
+                        id="question">
+
+                        Đang tải câu hỏi...
+
+                    </h2>
+
+                </div>
+
+                <div class="scroll-rod bottom"></div>
+
+            </div>
+
+
+            <!-- ĐÁP ÁN -->
+
+            <div
+                class="answers"
+                id="answers">
+
+            </div>
+
+
+            <!-- KẾT QUẢ -->
+
+            <div
+                class="result"
+                id="result">
+
+            </div>
+
+
+            <!-- NÚT TIẾP -->
+
+            <button
+                class="next-btn"
+                id="nextBtn"
+                onclick="nextQuestion()">
+
+                CÂU TIẾP THEO ❯
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =================================================
+             FINAL SCREEN
+        ================================================== -->
+
+        <div
+            class="final-screen"
+            id="finalScreen">
+
+            <div class="final-symbol">
+                ☼
+            </div>
+
+            <div class="header">
+
+                <div class="header-small">
+                    ĐẠI VIỆT • TRI THỨC • CÔNG NGHỆ
+                </div>
+
+                <h1>
+                    KHẢO HẠCH HOÀN TẤT
+                </h1>
+
+                <div class="sun-symbol">
+                    ◈ ━━━ ◉ ━━━ ◈
+                </div>
+
+            </div>
+
+
+            <h2>
+                Chúc mừng!
+            </h2>
+
+
+            <p class="final-message">
+
+                Khanh đã hoàn thành toàn bộ
+                24 câu hỏi.
+
+            </p>
+
+
+            <div
+                class="final-score"
+                id="finalScore">
+
+                0 / 24
+
+            </div>
+
+
+            <p
+                class="final-message"
+                id="finalComment">
+
+            </p>
+
+
+            <button
+                class="restart-btn"
+                onclick="restartGame()">
+
+                ⚔ CHƠI LẠI ⚔
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- HOA VĂN RỒNG -->
+
+    <div class="dragon-border">
+        🐉 〰 𓆙 〰 🐉 〰 𓆙 〰 🐉
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   1. DỮ LIỆU CÂU HỎI
+========================================================= */
+
+const questions = [
+
+    {
+        question:
+        "Chuyển đổi số trong giáo dục nhằm mục đích gì?",
+
+        answers: [
+            "Giảm số lượng giáo viên",
+            "Đổi mới dạy học và quản lý",
+            "Tăng học phí",
+            "Giảm thời gian học"
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Đâu là một thành tựu của chuyển đổi số giáo dục?",
+
+        answers: [
+            "Cơ sở dữ liệu giáo dục",
+            "Giảm sử dụng Internet",
+            "Tăng hồ sơ giấy",
+            "Giảm ứng dụng công nghệ"
+        ],
+
+        correct: 0
+    },
+
+    {
+        question:
+        "Một khó khăn của chuyển đổi số giáo dục là gì?",
+
+        answers: [
+            "Quá nhiều giáo viên",
+            "Hạ tầng công nghệ chưa đồng đều",
+            "Học sinh không cần học",
+            "Giảm nhu cầu Internet"
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Giáo viên cần làm gì để thích ứng với chuyển đổi số?",
+
+        answers: [
+            "Hạn chế công nghệ",
+            "Nâng cao năng lực số",
+            "Không sử dụng Internet",
+            "Chỉ dùng sách giấy"
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "AI có thể hỗ trợ giáo dục như thế nào?",
+
+        answers: [
+            "Hỗ trợ tạo học liệu",
+            "Thay thế hoàn toàn giáo viên",
+            "Làm học sinh không cần học",
+            "Xóa bỏ trường học"
+        ],
+
+        correct: 0
+    },
+
+    {
+        question:
+        "Chỉ chuyển bài giấy thành PowerPoint có phải chuyển đổi số hoàn toàn không?",
+
+        answers: [
+            "Có",
+            "Không",
+            "Luôn luôn",
+            "Chỉ ở đại học"
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Vấn đề nào cần được chú trọng khi sử dụng dữ liệu giáo dục?",
+
+        answers: [
+            "Bảo mật dữ liệu",
+            "Tăng giấy tờ",
+            "Giảm Internet",
+            "Giảm thiết bị"
+        ],
+
+        correct: 0
+    },
+
+    {
+        question:
+        "Học liệu số giúp học sinh:",
+
+        answers: [
+            "Tiếp cận tài liệu thuận tiện hơn",
+            "Không cần giáo viên",
+            "Không cần học",
+            "Chỉ học bằng sách giấy"
+        ],
+
+        correct: 0
+    },
+
+    {
+        question:
+        "Yếu tố nào giúp chuyển đổi số đạt hiệu quả?",
+
+        answers: [
+            "Chỉ mua thiết bị",
+            "Công nghệ + năng lực giáo viên",
+            "Chỉ tăng máy tính",
+            "Chỉ sử dụng AI"
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Mục tiêu cuối cùng của chuyển đổi số giáo dục là gì?",
+
+        answers: [
+            "Dùng càng nhiều công nghệ càng tốt",
+            "Làm giáo dục hiệu quả và phù hợp hơn",
+            "Thay thế giáo viên",
+            "Tăng số lượng thiết bị"
+        ],
+
+        correct: 1
+    },
+
+    /* =========================
+       PHẦN IV
+    ========================== */
+
+    {
+        question:
+        "Hoạt động nào sau đây chuyển từ tài liệu giấy sang file PDF để lưu trữ trên máy tính được gọi là gì?",
+
+        answers: [
+            "Số hóa thông tin (Digitization)",
+            "Số hóa quy trình (Digitalization)",
+            "Chuyển đổi số (Digital Transformation)",
+            "Công nghệ giáo dục (EdTech)"
+        ],
+
+        correct: 0
+    },
+
+    {
+        question:
+        "Đâu không phải là một trong 3 trụ cột cốt lõi của chuyển đổi số giáo dục được nhắc đến trong bài học?",
+
+        answers: [
+            "Quản trị số",
+            "Dạy & Học số",
+            "Không gian học số",
+            "Sách giáo khoa số"
+        ],
+
+        correct: 3
+    },
+
+    {
+        question:
+        "Vai trò chính của Công nghệ Giáo dục (EdTech) trong lớp học hiện đại là gì?",
+
+        answers: [
+            "Thay thế hoàn toàn vai trò hướng dẫn của người giáo viên.",
+            "Là công cụ hỗ trợ cá nhân hóa học tập và tăng tính tương tác, hiệu quả giảng dạy.",
+            "Giảm thời gian học tập của học sinh xuống một nửa.",
+            "Ép buộc học sinh phải tự học 100% qua máy tính."
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Xu hướng công nghệ EdTech nào giúp phân tích dữ liệu học tập của học sinh để đưa ra lộ trình phát triển phù hợp?",
+
+        answers: [
+            "VR/AR (Thực tế ảo)",
+            "Gamification (Trò chơi hóa)",
+            "Learning Analytics (Phân tích học tập)",
+            "AI (Trí tuệ nhân tạo)"
+        ],
+
+        correct: 2
+    },
+
+    {
+        question:
+        "Xu hướng công nghệ nào cho phép học sinh đeo một chiếc kính đặc biệt để 'nhìn thấy' cấu tạo bên trong của Trái Đất hoặc cơ thể người một cách trực quan 3D?",
+
+        answers: [
+            "Trí tuệ nhân tạo (AI)",
+            "Thực tế ảo / Thực tế tăng cường (VR/AR)",
+            "Phân tích học tập (Learning Analytics)",
+            "Phần mềm soạn văn bản Word"
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Khi nhìn vào bức tranh giáo dục toàn cầu, việc các quốc gia tiên tiến như Singapore, Mỹ đẩy mạnh công nghệ nhằm mục đích gì?",
+
+        answers: [
+            "Để học sinh lười suy nghĩ hơn.",
+            "Để chuẩn bị cho học sinh những kỹ năng số cần thiết trong tương lai.",
+            "Để nhà trường không cần tuyển dụng giáo viên nữa.",
+            "Để thay thế hoàn toàn việc học tại trường."
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Tại Việt Nam, việc xây dựng 'Khung chính sách & Chiến lược quốc gia' về chuyển đổi số giáo dục nhằm mục đích gì?",
+
+        answers: [
+            "Tạo hành lang pháp lý đồng bộ để các trường có cơ sở triển khai học tập và quản lý số an toàn, hiệu quả.",
+            "Ép buộc tất cả các trường học phải mua cùng một loại phần mềm.",
+            "Bỏ hoàn toàn hình thức thi cử trực tiếp bằng giấy.",
+            "Tăng học phí của học sinh để mua sắm thiết bị."
+        ],
+
+        correct: 0
+    },
+
+    {
+        question:
+        "Yếu tố 'Bảo mật' trong thực trạng chuyển đổi số giáo dục Việt Nam hiện nay cần đặc biệt chú ý đến vấn đề nào?",
+
+        answers: [
+            "Tốc độ đường truyền mạng Internet.",
+            "Bảo vệ dữ liệu cá nhân và thông tin học tập của học sinh, giáo viên trước nguy cơ rò rỉ.",
+            "Số lượng máy tính được mua mới mỗi năm.",
+            "Cấu hình phần cứng của máy chủ nhà trường."
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Trường THPT X tại một tỉnh miền núi đang muốn triển khai thi trắc nghiệm trực tuyến để chấm điểm tự động. Tuy nhiên, phòng máy tính của trường thường xuyên mất điện và đường truyền mạng không ổn định. Theo bạn, nhà trường nên ưu tiên xử lý 'điểm nghẽn' nào trước để đảm bảo tính công bằng cho học sinh?",
+
+        answers: [
+            "Nâng cao năng lực số cho giáo viên chấm bài.",
+            "Đầu tư nâng cấp hạ tầng mạng dự phòng và hệ thống lưu trữ điện (UPS) cho phòng máy.",
+            "Hủy bỏ hoàn toàn kế hoạch và quay lại thi giấy truyền thống lâu dài.",
+            "Yêu cầu học sinh tự mua mạng 4G cá nhân để làm bài thi."
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Để nâng cao 'Năng lực số' cho đội ngũ giáo viên tại Việt Nam, giải pháp chiến lược nào mang tính bền vững nhất?",
+
+        answers: [
+            "Tặng máy tính bảng mới cho toàn bộ giáo viên.",
+            "Tổ chức các khóa bồi dưỡng, tập huấn định kỳ về kỹ năng ứng dụng EdTech và tích hợp công nghệ vào bài giảng.",
+            "Thay thế toàn bộ giáo viên lớn tuổi bằng giáo viên trẻ thành thạo công nghệ hơn.",
+            "Yêu cầu giáo viên tự học qua mạng mà không cần hướng dẫn."
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Để giúp các thầy cô giáo không còn bỡ ngỡ khi sử dụng máy tính và các phần mềm dạy học mới, nhà trường nên làm gì?",
+
+        answers: [
+            "Tổ chức các buổi hướng dẫn, tập huấn cách sử dụng công nghệ.",
+            "Yêu cầu các thầy cô tự mua máy tính đắt tiền nhất.",
+            "Không cho các thầy cô dùng máy tính nữa.",
+            "Phạt tiền những thầy cô chưa biết dùng phần mềm."
+        ],
+
+        correct: 0
+    },
+
+    {
+        question:
+        "Trong tương lai, mô hình 'Học kết hợp' (Blended Learning) nghĩa là học sinh sẽ học như thế nào?",
+
+        answers: [
+            "Chỉ ở nhà xem tivi cả ngày.",
+            "Vừa học trực tiếp với thầy cô trên lớp, vừa kết hợp tự học và làm bài tập trực tuyến trên mạng.",
+            "Chỉ học qua sách giáo khoa giấy, cấm dùng điện thoại.",
+            "Đến trường chơi trò chơi chứ không cần học bài."
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Mục tiêu cuối cùng của phần 'Q&A' (Hỏi & Đáp) ở cuối bài thuyết trình về chuyển đổi số giáo dục là gì?",
+
+        answers: [
+            "Để kéo dài thời gian thuyết trình cho đủ giờ.",
+            "Để diễn giả đánh giá mức độ tiếp thu, giải tỏa các thắc mắc và tương tác trực tiếp với người nghe nhằm hoàn thiện giải pháp.",
+            "Để chứng minh người nghe không hiểu bài.",
+            "Để kiểm tra xem có ai ngủ gật trong lúc nghe thuyết trình hay không."
+        ],
+
+        correct: 1
+    },
+
+    {
+        question:
+        "Thầy Nam muốn ứng dụng trí tuệ nhân tạo (AI) vào việc giảng dạy môn Tiếng Anh cho lớp học có 40 học sinh với học lực không đồng đều. Phương án ứng dụng nào dưới đây thể hiện đúng tinh thần 'cá nhân hóa học tập' của chuyển đổi số?",
+
+        answers: [
+            "Dùng AI dịch toàn bộ bài đọc sang tiếng Việt và bắt cả lớp chép lại.",
+            "Sử dụng nền tảng AI để tự động theo dõi, phân tích điểm yếu của từng học sinh và gợi ý bài tập bổ trợ phù hợp với trình độ mỗi em.",
+            "Bật một video bài giảng do AI nói cho cả lớp nghe từ đầu đến cuối tiết học.",
+            "Dùng AI để chấm điểm chuyên cần của học sinh dựa trên camera lớp học."
+        ],
+
+        correct: 1
+    }
+
+];
+
+
+/* =========================================================
+   2. CẤU HÌNH GAME
+========================================================= */
+
+/*
+   Đổi thành 15 nếu muốn mỗi câu 15 giây.
+   Đổi thành 30 nếu muốn mỗi câu 30 giây.
+*/
+
+const TIME_PER_QUESTION = 20;
+
+
+/* =========================================================
+   3. BIẾN GAME
+========================================================= */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+let timeLeft = TIME_PER_QUESTION;
+
+let timerInterval = null;
+
+
+/* =========================================================
+   4. ÂM THANH
+========================================================= */
+
+let audioContext = null;
+
+
+/*
+   Khởi tạo âm thanh khi người chơi tương tác.
+*/
+
+function initAudio() {
+
+    if (!audioContext) {
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+}
+
+
+/*
+   Tạo một âm thanh đơn giản
+   bằng Web Audio API.
+*/
+
+function playTone(
+    frequency,
+    duration,
+    type = "sine",
+    volume = 0.08
+) {
+
+    initAudio();
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    oscillator.type = type;
+
+    oscillator.frequency.value =
+        frequency;
+
+    gain.gain.setValueAtTime(
+        volume,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + duration
+    );
+
+    oscillator.connect(gain);
+
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime + duration
+    );
+
+}
+
+
+/*
+   Âm thanh trả lời đúng
+*/
+
+function playCorrectSound() {
+
+    playTone(523, .12, "sine", .09);
+
+    setTimeout(() => {
+        playTone(659, .12, "sine", .08);
+    }, 100);
+
+    setTimeout(() => {
+        playTone(784, .22, "sine", .08);
+    }, 200);
+
+}
+
+
+/*
+   Âm thanh trả lời sai
+*/
+
+function playWrongSound() {
+
+    playTone(220, .18, "sawtooth", .07);
+
+    setTimeout(() => {
+        playTone(165, .3, "sawtooth", .06);
+    }, 150);
+
+}
+
+
+/*
+   Âm thanh hết giờ
+*/
+
+function playTimeOutSound() {
+
+    playTone(180, .2, "square", .06);
+
+    setTimeout(() => {
+        playTone(140, .3, "square", .06);
+    }, 200);
+
+}
+
+
+/* =========================================================
+   5. HIỂN THỊ CÂU HỎI
+========================================================= */
+
+function loadQuestion() {
+
+    answered = false;
+
+    stopTimer();
+
+
+    const q =
+        questions[currentQuestion];
+
+
+    document.getElementById(
+        "questionNumber"
+    ).innerText =
+        `Câu ${currentQuestion + 1} / ${questions.length}`;
+
+
+    document.getElementById(
+        "scoreText"
+    ).innerText =
+        `Điểm: ${score}`;
+
+
+    /*
+       Tạo lại hiệu ứng cuộn chiếu
+    */
+
+    const scroll =
+        document.getElementById(
+            "scrollContainer"
+        );
+
+    scroll.classList.remove(
+        "fade-out"
+    );
+
+    void scroll.offsetWidth;
+
+    scroll.classList.add(
+        "scroll-paper-animation"
+    );
+
+
+    document.getElementById(
+        "question"
+    ).innerText =
+        q.question;
+
+
+    /*
+       Tạo đáp án
+    */
+
+    const answersContainer =
+        document.getElementById(
+            "answers"
+        );
+
+    answersContainer.innerHTML = "";
+
+
+    const letters =
+        ["A", "B", "C", "D"];
+
+
+    q.answers.forEach(
+        (answer, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "answer";
+
+
+            button.innerHTML = `
+
+                <span class="answer-letter">
+                    ${letters[index]}
+                </span>
+
+                <span>
+                    ${answer}
+                </span>
+
+            `;
+
+
+            button.onclick =
+                function() {
+
+                    checkAnswer(
+                        index,
+                        button
+                    );
+
+                };
+
+
+            answersContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    /*
+       Reset kết quả
+    */
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+    result.className =
+        "result";
+
+    result.innerHTML = "";
+
+
+    /*
+       Reset nút
+    */
+
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+    nextBtn.style.display =
+        "none";
+
+
+    /*
+       Bắt đầu đồng hồ
+    */
+
+    startTimer();
+
+}
+
+
+/* =========================================================
+   6. ĐỒNG HỒ
+========================================================= */
+
+function startTimer() {
+
+    timeLeft =
+        TIME_PER_QUESTION;
+
+
+    updateTimerDisplay();
+
+
+    timerInterval =
+        setInterval(
+            () => {
+
+                timeLeft--;
+
+                updateTimerDisplay();
+
+
+                if (timeLeft <= 0) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    timeOut();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+function stopTimer() {
+
+    if (timerInterval) {
+
+        clearInterval(
+            timerInterval
+        );
+
+        timerInterval = null;
+
+    }
+
+}
+
+
+function updateTimerDisplay() {
+
+    const timer =
+        document.getElementById(
+            "timer"
+        );
+
+
+    const progress =
+        document.getElementById(
+            "timerProgress"
+        );
+
+
+    timer.innerText =
+        `${timeLeft} giây`;
+
+
+    const percent =
+        (timeLeft /
+            TIME_PER_QUESTION) *
+        100;
+
+
+    progress.style.width =
+        percent + "%";
+
+
+    if (timeLeft <= 5) {
+
+        timer.classList.add(
+            "warning"
+        );
+
+    } else {
+
+        timer.classList.remove(
+            "warning"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   7. HẾT GIỜ
+========================================================= */
+
+function timeOut() {
+
+    if (answered)
+        return;
+
+
+    answered = true;
+
+
+    playTimeOutSound();
+
+
+    const q =
+        questions[currentQuestion];
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+        }
+    );
+
+
+    /*
+       Đánh dấu đáp án đúng
+    */
+
+    buttons[
+        q.correct
+    ].classList.add(
+        "correct"
+    );
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    result.innerHTML = `
+
+        ⏳ HẾT GIỜ!
+
+        <br><br>
+
+        Đáp án đúng là:
+
+        <strong>
+            ${q.answers[q.correct]}
+        </strong>
+
+    `;
+
+
+    result.className =
+        "result show wrong-result";
+
+
+    showNextButton();
+
+}
+
+
+/* =========================================================
+   8. KIỂM TRA ĐÁP ÁN
+========================================================= */
+
+function checkAnswer(
+    selected,
+    selectedButton
+) {
+
+    if (answered)
+        return;
+
+
+    answered = true;
+
+
+    stopTimer();
+
+
+    const q =
+        questions[currentQuestion];
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    buttons.forEach(
+        button => {
+
+            button.classList.add(
+                "disabled"
+            );
+
+        }
+    );
+
+
+    /*
+       ĐÚNG
+    */
+
+    if (
+        selected ===
+        q.correct
+    ) {
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+
+        playCorrectSound();
+
+
+        const result =
+            document.getElementById(
+                "result"
+            );
+
+
+        result.innerHTML =
+            "✓ CHÍNH XÁC! Khanh đã trả lời đúng.";
+
+
+        result.className =
+            "result show correct-result";
+
+    }
+
+
+    /*
+       SAI
+    */
+
+    else {
+
+        selectedButton.classList.add(
+            "wrong"
+        );
+
+
+        buttons[
+            q.correct
+        ].classList.add(
+            "correct"
+        );
+
+
+        playWrongSound();
+
+
+        const result =
+            document.getElementById(
+                "result"
+            );
+
+
+        result.innerHTML = `
+
+            ✗ CHƯA CHÍNH XÁC!
+
+            <br>
+
+            Đáp án đúng là:
+
+            <strong>
+                ${q.answers[q.correct]}
+            </strong>
+
+        `;
+
+
+        result.className =
+            "result show wrong-result";
+
+    }
+
+
+    document.getElementById(
+        "scoreText"
+    ).innerText =
+        `Điểm: ${score}`;
+
+
+    showNextButton();
+
+}
+
+
+/* =========================================================
+   9. HIỆN NÚT TIẾP
+========================================================= */
+
+function showNextButton() {
+
+    const nextBtn =
+        document.getElementById(
+            "nextBtn"
+        );
+
+
+    nextBtn.style.display =
+        "block";
+
+
+    if (
+        currentQuestion ===
+        questions.length - 1
+    ) {
+
+        nextBtn.innerText =
+            "XEM KẾT QUẢ ❯";
+
+    }
+
+    else {
+
+        nextBtn.innerText =
+            "MỞ CHIẾU TIẾP THEO ❯";
+
+    }
+
+}
+
+
+/* =========================================================
+   10. CHUYỂN CÂU
+========================================================= */
+
+function nextQuestion() {
+
+    const scroll =
+        document.getElementById(
+            "scrollContainer"
+        );
+
+
+    /*
+       Hiệu ứng cuộn biến mất
+    */
+
+    scroll.classList.add(
+        "fade-out"
+    );
+
+
+    setTimeout(
+        () => {
+
+            currentQuestion++;
+
+
+            if (
+                currentQuestion <
+                questions.length
+            ) {
+
+                loadQuestion();
+
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+
+            else {
+
+                showFinalScreen();
+
+            }
+
+        },
+        350
+    );
+
+}
+
+
+/* =========================================================
+   11. MÀN HÌNH KẾT QUẢ
+========================================================= */
+
+function showFinalScreen() {
+
+    stopTimer();
+
+
+    document.getElementById(
+        "gameScreen"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "finalScreen"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "finalScore"
+    ).innerText =
+        `${score} / ${questions.length}`;
+
+
+    const percentage =
+        Math.round(
+            score /
+            questions.length *
+            100
+        );
+
+
+    let message;
+
+
+    if (percentage >= 90) {
+
+        message =
+            "🏆 Xuất sắc! Khanh đã nắm rất chắc kiến thức chuyển đổi số.";
+
+    }
+
+    else if (percentage >= 75) {
+
+        message =
+            "⚔ Rất tốt! Kiến thức đã được nắm khá vững.";
+
+    }
+
+    else if (percentage >= 50) {
+
+        message =
+            "📜 Khá tốt! Hãy xem lại một số nội dung để củng cố kiến thức.";
+
+    }
+
+    else {
+
+        message =
+            "📚 Hãy ôn lại bài và thử sức một lần nữa.";
+
+    }
+
+
+    document.getElementById(
+        "finalComment"
+    ).innerText =
+        `${message} — ${percentage}%`;
+
+}
+
+
+/* =========================================================
+   12. CHƠI LẠI
+========================================================= */
+
+function restartGame() {
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    answered = false;
+
+
+    document.getElementById(
+        "gameScreen"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "finalScreen"
+    ).style.display =
+        "none";
+
+
+    loadQuestion();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   13. KHỞI ĐỘNG
+========================================================= */
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
